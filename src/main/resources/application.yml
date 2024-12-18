@@ -1,0 +1,27 @@
+server:
+  port: 8443
+  ssl:
+    enabled: true
+    key-store: classpath:mykeystore.p12
+    key-store-type: PKCS12
+    key-store-password: mypassword
+    key-alias: mykey
+
+spring:
+  jpa:
+    properties:
+      hibernate:
+        default_schema: public
+        hbm2ddl:
+          auto: update
+
+
+  liquibase:
+    enabled: true
+    change-log: db/changelog/master.yaml
+
+  docker:
+    compose:
+      file: src/main/docker/compose.yaml
+      enabled: true
+      lifecycle-management: start_only
